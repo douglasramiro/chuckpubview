@@ -28,14 +28,17 @@ export default {
   },
   methods: {
     getJoke() {
+      let current = Date.now();
       axios
-        .get("http://chuck.tfcsummit.douglasramiro.me/randonFacts/")
+        .get(
+          "http://chuck.tfcsummit.douglasramiro.me/randonFacts/?time=" + current
+        )
         .then((r) => {
           this.number = 5;
           this.joke = r.data.Joke;
           this.img = r.data.Img;
           axios
-            .get("http://chuck.tfcsummit.douglasramiro.me/whereIsRunnig")
+            .get("http://chuck.tfcsummit.douglasramiro.me/whereIsRunnig/")
             .then((r) => {
               console.log(r);
               if (r.data.platform === "EKS") {
